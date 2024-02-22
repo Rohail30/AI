@@ -87,4 +87,68 @@ print(" ")
 sublist=tup[:]
 for i in sublist:
     print(i)    
+
+
+#Class Task
+#Write a program that takes input from the user and print it's table using list.
+
+"""
+num = int(input("Enter a number: "))
+l= []
+for i in range(11):
+    l[i] = num * i 
+    print(num*i)
     
+print(l)
+    
+"""
+
+n = int(input("Enter a number: "))
+if(n%3==0):
+    print("fizz")
+elif(n%5==0):
+    print("Buzz")
+else:
+    print("Nothing")
+
+#Class Task
+#Write a program that takes input from the user and print it's table using list.Should only be even
+
+"""
+Dictionary
+Key Value Pair: 
+person ={"Name":"Wali, "Geder":Male, "Age":"26"}
+person is dictionary
+person.values() are values--> "Wali", "Male"
+Person.keys --> "Name", "Gender"
+"""
+
+person ={"Name":"Wali", "Gender":"Male", "Age":"26"}
+print(person.keys())
+print(person.values())
+print("Person's name is", person["Name"])
+
+#Task2 : Write a program that defines a person dictionary with the following keys 
+#Name
+#Age
+#Gender
+#Program
+#University
+#All the values should be assigned by user input
+
+
+n = input("Enter name: ")
+a = int(input("Enter age: "))
+g = input("Enter Gender: ")
+p = input("Enter Pogram: ")
+u = input("Enter University: ")
+
+d = {}
+
+d["Name"] = n
+d["age"] = a
+d["Gender"] = g
+d["Pogram"] = p
+d["University"] = u
+
+print(d)

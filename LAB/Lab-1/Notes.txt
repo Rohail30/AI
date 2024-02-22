@@ -1,0 +1,10 @@
+Mid 20 marks
+Final 40 marks
+CAB 10 marks
+project 20 marks
+Assignment 10 marks
+
+AI basics
+Classification: Classifying data
+Regression: Based on present data predict about future data
+

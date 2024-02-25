@@ -127,6 +127,27 @@ for i in sublist:
     print(i)
 ```
 
+
+
+# Type Casting
+- Implicit: done automatically by the compiler
+- Explicit: done by the programmer using predefined functions
+
+```python
+int()
+float()
+str()
+num1 = int(input())
+num2 = int(input())
+
+print("Addition: ", num1 + num2)
+print("Subtraction: ", num1 - num2)
+print("Multiplication: ", num1 * num2)
+print("Division: ", num1 / num2)
+print("Modulus: ", num1 % num2)
+print("Exponent: ", num1**num2)
+```
+
 # Class Task
 
 ```python

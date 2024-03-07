@@ -1,0 +1,1 @@
+{'Registration': 2012366, 'Name': 'jack', 'Phone': 258741369, 'email': 'Jack@example.com', 'University': 'FAST', 'Year': 2021}

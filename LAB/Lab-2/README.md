@@ -84,13 +84,27 @@ print(np.sqrt(4))
 
 ### Range and Arange
 ```python
-narray = range(10)
-narray2 = range(1, 10)
-narray3 = range(1, 10, 2)
-
+narray=range(10)
+narray2=range(1,10)
+narray3=range(1,10,2)
 print(narray)
 print(narray2)
 print(narray3)
+
+print("Range(10)")
+for i in range(10):
+    print(i)
+print("Range(1,10)")
+for i in (1,10):
+    print(i)
+print("Range(1,10,2)")
+for i in range(1,10,2):
+    print(i)
+
+nparray=np.arange(0,np.pi,0.1)
+print(nparray)
+nparray2=2*nparray
+print(nparray2)
 ```
 
 ## File Operations

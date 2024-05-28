@@ -1,0 +1,123 @@
+SLP
+
+
+import numpy as np
+
+
+class SLP(object):
+    def __init__(self, input_size, learning_rate=1, epochs=100):
+        self.Weights = np.zeros(input_size + 1)
+        print("Creating weight vector, 1D Array with Zeros", self.Weights)
+        self.epochs = epochs
+        self.learning_rate = learning_rate
+
+    def activation_function(self, input_value):
+        return 1 if input_value >= 0 else 0
+
+    def predict(self, input_value):
+        z = self.Weights.T.dot(input_value)
+        a = self.activation_function(z)
+        return a
+
+    def perceptronLearning(self, given_input, desired_output):
+        for j in range(self.epochs):
+            for i in range(desired_output.shape[0]):
+                x = np.insert(given_input[i], 0, 1)
+                y = self.predict(x)
+                e = desired_output[i] - y
+
+                print("Error: ", e)
+                print("Predicted Output: ", y)
+                self.Weights = self.Weights + self.learning_rate * e * x
+
+
+
+# OR Gate
+given_input = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+desired_output = np.array([0, 1, 1, 1])
+
+
+slp = SLP(input_size=2)
+slp.perceptronLearning(given_input, desired_output)
+
+
+print("Input Weight with bias: ", slp.Weights)
+print("Learning Rate: ", slp.learning_rate)
+print("Total Epochs: ", slp.epochs)
+
+
+K-Means
+
+import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
+
+
+df = pd.read_csv("income.csv")
+
+scaler = MinMaxScaler()
+
+scaler.fit(df[["Income($)"]])
+df["Income($)"] = scaler.transform(df[["Income($)"]])
+scaler.fit(df[["Age"]])
+df["Age"] = scaler.transform(df[["Age"]])
+
+plt.scatter(df.Age, df["Income($)"])
+
+km = KMeans(n_clusters=3)
+y_predicted = km.fit_predict(df[["Age", "Income($)"]])
+y_predicted
+
+df["cluster"] = y_predicted
+
+km.cluster_centers_
+
+df1 = df[df.cluster == 0]
+df2 = df[df.cluster == 1]
+df3 = df[df.cluster == 2]
+
+plt.scatter(df1.Age, df1["Income($)"], color="green")
+plt.scatter(df2.Age, df2["Income($)"], color="red")
+plt.scatter(df3.Age, df3["Income($)"], color="black")
+plt.scatter(km.cluster_centers_[:, 0], km.cluster_centers_[:, 1], color="purple", marker="*", label="centroid")
+plt.legend()
+
+---
+
+sse = []
+k_rng = range(1,10)
+for k in k_rng:
+    km = KMeans(n_clusters=k)
+    km.fit(df[['Age', 'Income($)']])
+    sse.append(km.inertia_)
+
+plt.xlabel('K')
+plt.ylabel('Sum of squared error')
+plt.plot(k_rng, sse)
+
+Dec T
+
+import pandas as pd
+from sklearn import tree
+from sklearn.preprocessing import LabelEncoder
+
+df = pd.read_csv("./salaries.csv")
+
+inputs = df.drop("salary_more_then_100k", axis="columns")
+target = df["salary_more_then_100k"]
+
+le_company = LabelEncoder()
+le_job = LabelEncoder()
+le_degree = LabelEncoder()
+
+inputs["company_n"] = le_company.fit_transform(inputs["company"])
+inputs["job_n"] = le_job.fit_transform(inputs["job"])
+inputs["degree_n"] = le_degree.fit_transform(inputs["degree"])
+
+inputs_n = inputs.drop(["company", "job", "degree"], axis="columns")
+
+model = tree.DecisionTreeClassifier()
+
+model.fit(inputs_n, target)
+model.score(inputs_n, target)
